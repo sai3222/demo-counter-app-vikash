@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    stages{
+    stages {
         stage ('git checkout'){
             steps {
               git branch: 'main', url: 'https://github.com/sai3222/demo-counter-app-vikash.git'
