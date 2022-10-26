@@ -36,6 +36,27 @@ pipeline {
                   waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api-key'
                 }    
             }
-      }   
+      }
+      stage ('Upload War to nexus') {
+          steps {
+              script {
+                nexusArtifactUploader artifacts: 
+                    [
+                        [
+                            artifactId: 'springboot', 
+                            classifier: '', file: 'target/Uber',
+                            type: 'jar'
+                        ]
+                    ], 
+                credentialsId: 'nexus-auth', 
+                groupId: 'com.example', 
+                nexusUrl: 'http://3.18.107.201:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: 'Demoapp-release', 
+                version: '1.0.0'  
+              }
+          }
+      }    
    }     
 }
