@@ -37,7 +37,7 @@ pipeline {
                 }    
             }
       }
-      stage ('Upload War to nexus') {
+      stage ('Upload jar to nexus') {
           steps {
               script {
                 nexusArtifactUploader artifacts: 
