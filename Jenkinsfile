@@ -37,7 +37,7 @@ pipeline {
                 }    
             }
       }
-      stage ('Upload jar to nexus') {
+      stage ('Upload jar nexus') {
           steps {
               script {
                 nexusArtifactUploader artifacts: 
@@ -50,7 +50,7 @@ pipeline {
                 ], 
                 credentialsId: 'nexus-auth', 
                 groupId: 'com.example', 
-                nexusUrl: 'http://3.19.66.129:8081/', 
+                nexusUrl: '3.19.66.129:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: 'demo-app-release', 
