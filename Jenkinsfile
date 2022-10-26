@@ -41,13 +41,13 @@ pipeline {
           steps {
               script {
                 nexusArtifactUploader artifacts: 
-                    [
-                        [
+                [
+                     [
                             artifactId: 'springboot', 
-                            classifier: '', file: 'target/springboot*.jar',
+                            classifier: '', file: 'target/Uber.jar',
                             type: 'jar'
-                        ]
-                    ], 
+                            ]
+                ], 
                 credentialsId: 'nexus-auth', 
                 groupId: 'com.example', 
                 nexusUrl: 'http://3.18.107.201:8081', 
