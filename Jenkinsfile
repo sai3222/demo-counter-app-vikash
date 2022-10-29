@@ -59,10 +59,10 @@ pipeline {
                     version: "${readPomVersion.version}"
               }
           }
-      } */
+      }     */
       stage ('Docker image build') {
           steps {
-              scripts {  //  <---make sure you need to install docker in jenkins server then only docker can create a image-->
+              scripts {
                   sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
                   sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:v1.$BUILD_ID'
                   sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:latest'
