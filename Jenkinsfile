@@ -37,7 +37,7 @@ pipeline {
                 }    
             }
       }
-    /*  stage ('Upload jar nexus') {
+      stage ('Upload jar nexus') {
           steps {
               script {
                 def readPomVersion  = readMavenPom file: 'pom.xml'
@@ -59,7 +59,7 @@ pipeline {
                     version: "${readPomVersion.version}"
               }
           }
-      }     */
+      }
       stage ('Docker image build') {
           steps {
               scripts {
