@@ -59,6 +59,14 @@ pipeline {
                     version: "${readPomVersion.version}"
               }
           }
-      }    
+      }
+      stage ('docker image build')
+        steps {
+            scripts {
+                sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+                sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:v1.$BUILD_ID'
+                sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:latest'
+            }
+        }          
    }     
 }
