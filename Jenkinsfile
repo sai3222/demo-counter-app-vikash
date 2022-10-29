@@ -60,13 +60,24 @@ pipeline {
               }
           }
       }
-      stage ('docker image build')
-        steps {
-            scripts {  //  <---make sure you need to install docker in jenkins server then only docker can create a image-->
-                sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
-                sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:v1.$BUILD_ID'
-                sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:latest'
-            }
-        }          
-   }     
+      stage ('Docker image build') {
+          steps {
+              scripts {  //  <---make sure you need to install docker in jenkins server then only docker can create a image-->
+                  sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+                  sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:v1.$BUILD_ID'
+                  sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:latest'
+              }
+          }
+      }
+      stage ('Docker push'){
+          steps {
+              scripts {
+                  //in this you need to docker hub credentials
+                sh 'docker login -u saikrishna310 -p '
+                sh 'docker image push saikrishna310/$JOB_NAME:v1.$BUILD_ID'
+                sh 'docker image push saikrishna310/$JOB_NAME:latest'  
+              }  
+          }
+      }  
+    }      
 }
