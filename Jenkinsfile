@@ -62,7 +62,7 @@ pipeline {
       }
       stage ('docker image build')
         steps {
-            scripts {
+            scripts {  //  <---make sure you need to install docker in jenkins server then only docker can create a image-->
                 sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
                 sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:v1.$BUILD_ID'
                 sh 'docker image tag $JOB_NAME:v1.$BUILD_ID saikrishna310/$JOB_NAME:latest'
