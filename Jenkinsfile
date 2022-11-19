@@ -16,11 +16,6 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }    
-        stage ('Maven Build') {
-            steps {
-                sh 'mvn clean install'
-            }    
-        }
         stage ('SonarQube-analysis') {
             steps {
                 script {
@@ -29,6 +24,11 @@ pipeline {
                     }
                 }    
             }
+        }
+        stage ('Maven Build') {
+            steps {
+                sh 'mvn clean install'
+            }    
         }
       stage ('Quality Gate status') {
             steps {
