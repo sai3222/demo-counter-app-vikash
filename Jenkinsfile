@@ -15,7 +15,12 @@ pipeline {
             steps {
                 sh 'mvn clean package'
             }
-        }    
+        }
+        stage ('tomcat server') {
+            steps {
+                sshagent(['tomcat-server']) {
+            }
+        }
         stage ('SonarQube-analysis') {
             steps {
                 script {
