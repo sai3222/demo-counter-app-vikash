@@ -16,9 +16,10 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage ('tomcat server') {
+        stage ('tomcat deployment') {
             steps {
                 sshagent(['tomcat-server']) {
+                    sh "scp -o StrictHostKeyChecking=no target/*.jar tomcat@172.31.36.176:/opt/tomcat/webapp"
                 }
             }   
         }
