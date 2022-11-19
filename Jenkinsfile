@@ -19,7 +19,8 @@ pipeline {
         stage ('tomcat server') {
             steps {
                 sshagent(['tomcat-server']) {
-            }
+                }
+            }   
         }
         stage ('SonarQube-analysis') {
             steps {
