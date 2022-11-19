@@ -19,7 +19,7 @@ pipeline {
         stage ('tomcat deployment') {
             steps {
                 sshagent(['tomcat-server']) {
-                    sh "scp -o StrictHostKeyChecking=no target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
+                    sh "scp target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
                 }
             }   
         }
