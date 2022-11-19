@@ -25,11 +25,7 @@ pipeline {
                 }    
             }
         }
-        stage ('Maven Build') {
-            steps {
-                sh 'mvn clean install'
-            }    
-        }
+        
       stage ('Quality Gate status') {
             steps {
                 script {
