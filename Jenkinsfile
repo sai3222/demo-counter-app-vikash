@@ -24,9 +24,9 @@ pipeline {
         stage ('SonarQube-analysis') {
             steps {
                 script {
-                    withSonarQubeEnv(credentialsId: 'sonar-api-key') {
+                    withSonarQubeEnv(credentialsId: 'sonarqube_token') {
                       sh 'mvn clean package sonar:sonar'    
-                }
+                    }
                 }    
             }
         }
