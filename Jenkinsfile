@@ -16,7 +16,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage ('SonarQube-analysis') {
+        stage ('SonarQube analysis') {
             steps {
                 script {
                     withSonarQubeEnv(credentialsId: 'sonar-token') {
@@ -28,7 +28,7 @@ pipeline {
         stage ('tomcat deployment') {
             steps {
                 sshagent(['tomcat-server']) {
-                    sh "scp target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
+                    sh "scp -r target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
                 }
             }   
         }
