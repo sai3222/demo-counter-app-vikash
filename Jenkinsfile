@@ -16,13 +16,6 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage ('tomcat deployment') {
-            steps {
-                sshagent(['tomcat-server']) {
-                    sh "scp target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
-                }
-            }   
-        }
         stage ('SonarQube-analysis') {
             steps {
                 script {
