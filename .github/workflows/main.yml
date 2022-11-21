@@ -36,7 +36,7 @@ jobs:
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=smcs
       - name: creating a warfile
         run: |
-              mvn -B package --file pom.xml
+              mvn clean package
               mkdir artifacts && cp target/*.jar artifacts
               cd artifacts && ls
         
