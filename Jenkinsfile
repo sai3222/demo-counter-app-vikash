@@ -16,21 +16,5 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage ('SonarQube analysis') {
-            steps {
-                script {
-                    withSonarQubeEnv(credentialsId: 'sonar-token') {
-                      sh 'mvn clean package sonar:sonar'    
-                    }
-                }    
-            }
-        }  
-        stage ('tomcat deployment') {
-            steps {
-                sshagent(['tomcat-server']) {
-                    sh "scp -r target/Uber.jar ubuntu@172.31.36.176:/opt/tomcat/webapps"
-                }
-            }   
-        }
     }      
 }
